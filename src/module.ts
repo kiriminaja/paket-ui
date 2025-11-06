@@ -48,6 +48,7 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     addPlugin(resolve('./runtime/plugin'))
+    addPlugin(resolve('./runtime/utils/cn'))
 
     addComponentsDir({
       path: resolve('./runtime/components'),
