@@ -1,6 +1,6 @@
 {
   "name": "paket-ui",
-  "version": "v0.0.3-alpha.0",
+  "version": "v0.0.4",
   "description": "KiriminAja Paket UI, a UI component library for Nuxt 3 applications.",
   "repository": "kiriminaja/paket-ui",
   "license": "MIT",
@@ -34,30 +34,30 @@
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/icon": "^1.13.0",
-    "@nuxt/kit": "^3.17.4",
+    "@nuxt/icon": "^1.15.0",
+    "@nuxt/kit": "^3.20.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "clsx": "^2.1.1",
     "defu": "^6.1.4",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^2.4.1",
-    "@nuxt/eslint-config": "^1.4.1",
-    "@nuxt/module-builder": "^1.0.1",
-    "@nuxt/schema": "^3.17.4",
-    "@nuxt/test-utils": "^3.19.1",
-    "@types/node": "latest",
-    "changelogen": "^0.6.1",
-    "eslint": "^9.27.0",
-    "nuxt": "^3.17.4",
-    "typescript": "~5.8.3",
-    "reka-ui": "^2.2.1",
-    "@tailwindcss/postcss": "^4.1.7",
-    "@tailwindcss/vite": "^4.1.7",
-    "tailwindcss": "^4.1.7",
-    "tailwind-variants": "^1.0.0",
-    "vitest": "^3.1.4",
-    "vue-tsc": "^2.2.10"
+    "@nuxt/devtools": "^2.7.0",
+    "@nuxt/eslint-config": "^1.10.0",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^3.20.0",
+    "@nuxt/test-utils": "^3.20.1",
+    "@types/node": "^24.10.0",
+    "changelogen": "^0.6.2",
+    "eslint": "^9.39.1",
+    "nuxt": "^4.0.0",
+    "typescript": "~5.9.3",
+    "reka-ui": "^2.6.0",
+    "@tailwindcss/postcss": "^4.1.16",
+    "@tailwindcss/vite": "^4.1.16",
+    "tailwindcss": "^4.1.16",
+    "tailwind-variants": "^3.1.1",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^2.2.12"
   }
 }
