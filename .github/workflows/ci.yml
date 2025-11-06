@@ -1,49 +1,30 @@
-name: ci
+name: Publish to NPM on Tag
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    tags:
+      - 'v*' # matches v1.2.3 or v1.2.3-beta.1 etc.
 
 jobs:
-  lint:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # REQUIRED so the tag is available!
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
 
-      - run: npm i -g --force corepack@latest && corepack enable
+      - run: npm ci
 
-      - name: Install dependencies
-        run: npx nypm@latest i
+      # ⬇️ This reads version from the tag (semantic or prerelease)
+      - run: npm version from-git --no-git-tag-version
 
-      - name: Lint
-        run: npm run lint
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - run: npm i -g --force corepack@latest && corepack enable
-
-      - name: Install dependencies
-        run: npx nypm@latest i
-
-      - name: Playground prepare
-        run: npm run dev:prepare
-
-      - name: Test
-        run: npm run test
+      # ⬇️ Publish
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
