@@ -1,6 +1,6 @@
 {
   "name": "paket-ui",
-  "version": "v0.0.1",
+  "version": "v0.0.2",
   "description": "KiriminAja Nakama UI, a UI component library for Nuxt 3 applications.",
   "repository": "kiriminaja/nakama-ui",
   "license": "MIT",
