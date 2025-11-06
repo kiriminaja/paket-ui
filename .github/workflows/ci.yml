@@ -1,45 +1,63 @@
 # .github/workflows/publish.yml
-name: Publish to npm (Trusted Publishers)
+name: Publish (npm Trusted Publisher + Bun)
 
 on:
   push:
     tags:
-      - 'v*' # v1.2.3, v1.2.3-beta.1, etc.
+      - 'v*'
 
 permissions:
   contents: read
-  id-token: write # REQUIRED for OIDC
+  id-token: write # REQUIRED for npm Trusted Publishers (OIDC)
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # ensure tag is present
+          fetch-depth: 0 # ensure the tag exists locally
 
+      # Bun for install/build/test
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.x' # or pin a version
+          # cache: true       # optional
+
+      # Node/npm only for npm publish + provenance
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
-      - run: npm ci
-      - run: npm test --if-present
-      - run: npm run build --if-present
+      # Install deps with Bun (lockfile-aware)
+      - name: Install
+        run: |
+          if [ -f bun.lockb ]; then
+            bun install --frozen-lockfile
+          else
+            bun install
+          fi
 
-      # Read the semver from the tag (v1.2.3 or v1.2.3-beta.1)
-      - name: Sync version from tag
+      - name: Test
+        run: bun test --if-present
+
+      - name: Build
+        run: bun run build --if-present
+
+      # Sync package.json version from the Git tag (v1.2.3 or v1.2.3-beta.1)
+      - name: Version from tag
         run: npm version from-git --no-git-tag-version
 
-      # Auto-choose dist-tag for prereleases
-      - name: Publish with provenance (Trusted Publisher)
+      # Publish with provenance; prereleases -> "next", stables -> "latest"
+      - name: Publish to npm
+        env:
+          NPM_CONFIG_PROVENANCE: 'true' # same as --provenance
         run: |
           VERSION=$(node -p "require('./package.json').version")
           if [[ "$VERSION" == *"-"* ]]; then
-            npm publish --access public --provenance --tag next
+            npm publish --access public --tag next
           else
-            npm publish --access public --provenance
+            npm publish --access public
           fi
-        env:
-          # No NPM_TOKEN needed when using Trusted Publishers
-          NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
