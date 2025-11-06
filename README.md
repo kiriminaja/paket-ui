@@ -24,7 +24,7 @@ My new Nuxt module for doing amazing things.
 Install the module to your Nuxt application with one command:
 
 ```bash
-npx nuxi module add @nakama/ui
+npx nuxi module add paket-ui
 ```
 
 That's it! You can now use My Module in your Nuxt app ✨
@@ -62,11 +62,11 @@ That's it! You can now use My Module in your Nuxt app ✨
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/@nakama/ui/latest.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-version-href]: https://npmjs.com/package/@nakama/ui
-[npm-downloads-src]: https://img.shields.io/npm/dm/@nakama/ui.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npm.chart.dev/@nakama/ui
-[license-src]: https://img.shields.io/npm/l/@nakama/ui.svg?style=flat&colorA=020420&colorB=00DC82
-[license-href]: https://npmjs.com/package/@nakama/ui
+[npm-version-src]: https://img.shields.io/npm/v/paket-ui/latest.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-version-href]: https://npmjs.com/package/paket-ui
+[npm-downloads-src]: https://img.shields.io/npm/dm/paket-ui.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-downloads-href]: https://npm.chart.dev/paket-ui
+[license-src]: https://img.shields.io/npm/l/paket-ui.svg?style=flat&colorA=020420&colorB=00DC82
+[license-href]: https://npmjs.com/package/paket-ui
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
